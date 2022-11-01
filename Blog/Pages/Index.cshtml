@@ -1,10 +1,26 @@
 ﻿@page
+@using Blog.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <h1 class="display-4">Welcome to my Blog, read on!!!</h1>
+    <div class="row g-4">
+        @foreach (Article article in Model.articlesList)
+        {
+            <div class="col-sm-12">
+                <div class="row">
+                    
+                        <h5 class="">@article.Title</h5>
+                        <h6 class=" mb-2 text-muted">Posted by @article.Author.UserName on @article.Created</h6>
+                        <p class=" text-truncate-container"> @article.Body </p>
+                        <a class="btn btn-light" asp-page="/ViewArticle" asp-route-id="@article.Id"
+                        title="Order @article.Title">Read more</a>
+                    
+                </div>
+            </div>
+        }
+    </div>
 </div>
